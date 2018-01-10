@@ -67,9 +67,12 @@
     </div>
     <div class="ui bottom attached clearing segment">
         <div class="ui container">
-
-            <h1 class="ui dividing header">{{ title }}</h1>
-            <p>{{ sub_title }}</p>
+            {% if header_show is not defined or header_show %}
+                <h1 class="ui dividing header">{{ title }}</h1>
+                {% if sub_title is defined and sub_title is not empty %}
+                    <p>{{ sub_title }}</p>
+                {% endif %}
+            {% endif %}
 
             <!-- CONTENT -->
             {{ block('content') }}

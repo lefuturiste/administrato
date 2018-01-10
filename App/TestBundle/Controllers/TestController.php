@@ -8,6 +8,6 @@ use Psr\Http\Message\ServerRequestInterface;
 class TestController extends Controller {
 	public function getTest(ServerRequestInterface $request, ResponseInterface $response)
 	{
-		di('hell');
+		$this->render($response, 'meme');
 	}
 }
