@@ -1,0 +1,7 @@
+{% extends 'default.twig' %}
+{% set title = "Destroy confirmation" %}
+{% set sub_title = "Destroy " ~ _dashboard.id ~ " ?" %}
+{% block menu %}{% include 'settings/menu.twig' %}{% endblock %}
+{% block content %}
+    <a href="{{ path_for('settings.dashboards.destroy', {uuid: _dashboard.id}) }}" class="ui primary button">Yes delete it</a>
+{% endblock %}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Meta -->
+    <meta name="charset" content="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    {% if block("meta") is defined %}
+        {{ block('meta') }}
+    {% endif %}
+
+    <title>Administrator | {{ title }} </title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css" />
+    <link rel="stylesheet" href="/dist/css/app.css">
+    {% if block("style") is defined %}
+        {{ block('style') }}
+    {% endif %}
+</head>
+<body>
+
+<div class="ui sidebar inverted vertical menu">
+    <a class="item" href="/dashboard">
+        <i class="home icon"></i>
+        Home dashboard
+    </a>
+
+    {% if block("menu") is defined %}
+        {{ block("menu") }}
+    {% endif %}
+
+    <div class="sidebar-bottom">
+        <a class="item item-hacked">
+        </a>
+        <a class="item" href="/settings">
+            <i class="setting icon"></i>
+            Settings
+        </a>
+
+        <a class="item" href="/logout">
+            <i class="sign out icon"></i>
+            Logout
+        </a>
+    </div>
+
+</div>
+<div class="pusher">
+    <div class="ui top attached menu">
+        <div class="ui dropdown icon item" id="sidebar-toogle">
+            <i class="list icon"></i>
+        </div>
+        <div class="right menu">
+            <div class="ui item selection dropdown" id="dropdown">
+                <input type="hidden" name="gender">
+                <i class="dropdown icon"></i>
+                <div class="default text">Domains</div>
+                <div class="menu">
+                    {% for dashboard in user.dashboards %}
+                        <a class="item" href="/{{ dashboard.name }}" data-text="{{ dashboard.title }}">
+                            {{ dashboard.title }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui bottom attached clearing segment">
+        <div class="ui container">
+
+            <h1 class="ui dividing header">{{ title }}</h1>
+            <p>{{ sub_title }}</p>
+
+            <!-- CONTENT -->
+            {{ block('content') }}
+            <!-- fin CONTENT -->
+        </div>
+    </div>
+    <div class="ui container footer">
+        Le_Futuriste's panel <br>
+        Logged as "{{ user.username }}"
+    </div>
+</div>
+<div class="ui active dimmer" id="loader">
+    <div class="ui text loader">Loading</div>
+</div>
+
+<script src="/dist/js/app.min.js"></script>
+{% if block("scripts") is defined %}
+    {{ block('scripts') }}
+{% endif %}
+<!-- Fin Js -->
+
+</body>
+</html>

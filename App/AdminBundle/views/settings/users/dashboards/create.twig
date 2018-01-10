@@ -1,0 +1,18 @@
+{% extends 'default.twig' %}
+{% set title = "Create user dashboard" %}
+{% set sub_title = "Add dashboard to an user" %}
+{% block menu %}{% include 'settings/menu.twig' %}{% endblock %}
+{% block content %}
+    {% include 'flash.twig' %}
+    <form class="ui form" action="{{ path_for('settings.users.dashboards.store', {uuid: _user.id}) }}" method="post">
+        <div class="field">
+            <label for="level">Dashboard</label>
+            <select class="ui dropdown" name="uuid">
+                {% for dashboard in dashboards %}
+                    <option value="{{ dashboard.id }}">{{ dashboard.title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button class="ui button" type="submit">Submit</button>
+    </form>
+{% endblock %}

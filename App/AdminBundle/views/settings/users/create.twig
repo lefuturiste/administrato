@@ -1,0 +1,21 @@
+{% extends 'default.twig' %}
+{% set title = "Create user" %}
+{% set sub_title = "Add user to administrator panel" %}
+{% block menu %}{% include 'settings/menu.twig' %}{% endblock %}
+{% block content %}
+    {% include 'flash.twig' %}
+    <form class="ui form" action="{{ path_for('settings.users.store') }}" method="post">
+        <div class="field">
+            <label for="uuid">UUID</label>
+            <input id="uuid" name="uuid" placeholder="SA-58cea4045ce69">
+        </div>
+        <div class="field">
+            <label for="level">Level</label>
+            <select class="ui dropdown" name="level">
+                <option value="default">Default</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
+        <button class="ui button" type="submit">Submit</button>
+    </form>
+{% endblock %}

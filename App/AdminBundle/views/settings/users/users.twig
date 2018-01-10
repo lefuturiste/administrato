@@ -1,0 +1,47 @@
+{% extends 'default.twig' %}
+{% set title = "Users" %}
+{% set sub_title = "List of users" %}
+{% block menu %}{% include 'settings/menu.twig' %}{% endblock %}
+{% block content %}
+    {% include 'flash.twig' %}
+    <table class="ui single line table">
+        <thead>
+        <tr>
+            <th>UUID stail.eu</th>
+            <th>Level</th>
+            <th>Created_at</th>
+            <th>Updated_at</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.level }}</td>
+                <td>{{ user.created_at }}</td>
+                <td>{{ user.updated_at }}</td>
+                <td>
+                    <a href="{{ path_for('settings.users.view', {uuid: user.id}) }}" class="ui right floated small labeled icon button">
+                        <i class="user icon"></i>
+                        View
+                    </a>
+                    <a href="{{ path_for('settings.users.delete', {uuid: user.id}) }}" class="ui right floated small labeled icon button">
+                        <i class="user remove icon"></i>
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot class="full-width">
+        <tr>
+            <th colspan="5">
+                <a class="ui right floated small primary labeled icon button" href="{{ path_for('settings.users.create') }}">
+                    <i class="user add icon"></i> Add User
+                </a>
+            </th>
+        </tr>
+        </tfoot>
+    </table>
+{% endblock %}

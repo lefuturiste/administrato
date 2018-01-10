@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Meta -->
+    <meta name="charset" content="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    {% if block("meta") is defined %}
+        {{ block('meta') }}
+    {% endif %}
+
+    <title>Administrator | {{ title }} </title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css" />
+    <link rel="stylesheet" href="/dist/css/app.css">
+    {% if block("style") is defined %}
+        {{ block('style') }}
+    {% endif %}
+</head>
+<body>
+
+<div class="ui container" style="padding-top: 2em">
+
+    <h1 class="ui dividing header">{{ title }}</h1>
+    <p>{{ sub_title }}</p>
+
+    <!-- CONTENT -->
+    {{ block('content') }}
+    <!-- fin CONTENT -->
+</div>
+<div class="ui active dimmer" id="loader">
+    <div class="ui text loader">Loading</div>
+</div>
+
+<script src="/dist/js/app.min.js"></script>
+{% if block("scripts") is defined %}
+    {{ block('scripts') }}
+{% endif %}
+<!-- Fin Js -->
+
+</body>
+</html>

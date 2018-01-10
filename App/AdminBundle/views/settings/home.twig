@@ -1,0 +1,22 @@
+{% extends 'default.twig' %}
+{% set title = "List of settings" %}
+{% set sub_title = "List of administrator settings" %}
+{% block menu %}{% include 'settings/menu.twig' %}{% endblock %}
+{% block content %}
+    <div class="ui relaxed divided list">
+        <div class="item">
+            <i class="large archive middle aligned icon"></i>
+            <div class="content">
+                <a class="header" href="{{ path_for('settings.users') }}">Users</a>
+                <div class="description">User settings</div>
+            </div>
+        </div>
+        <div class="item">
+            <i class="large archive middle aligned icon"></i>
+            <div class="content">
+                <a class="header" href="{{ path_for('settings.dashboards') }}">Dashboards</a>
+                <div class="description">Dashboards settings</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'default.twig' %}
+{% set title = "Create dashboard" %}
+{% set sub_title = "Add dashboard to administrator panel" %}
+{% block menu %}{% include 'settings/menu.twig' %}{% endblock %}
+{% block content %}
+    {% include 'flash.twig' %}
+    <form class="ui form" action="{{ path_for('settings.dashboards.store') }}" method="post">
+        <div class="field">
+            <label for="name">Name (or slug)</label>
+            <input id="name" name="name" placeholder="my-great-dashboard">
+        </div>
+        <div class="field">
+            <label for="title">Title</label>
+            <input id="title" name="title" placeholder="My great dashboard">
+        </div>
+        <button class="ui button" type="submit">Submit</button>
+    </form>
+{% endblock %}

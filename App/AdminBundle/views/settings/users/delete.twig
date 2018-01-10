@@ -1,0 +1,7 @@
+{% extends 'default.twig' %}
+{% set title = "Destroy confirmation" %}
+{% set sub_title = "Destroy " ~ _user.id ~ " ?" %}
+{% block menu %}{% include 'settings/menu.twig' %}{% endblock %}
+{% block content %}
+    <a href="{{ path_for('settings.users.destroy', {uuid: _user.id}) }}" class="ui primary button">Yes delete it</a>
+{% endblock %}

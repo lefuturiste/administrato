@@ -1,0 +1,47 @@
+{% extends 'default.twig' %}
+{% set title = "Dashboards" %}
+{% set sub_title = "List of dashboards" %}
+{% block menu %}{% include 'settings/menu.twig' %}{% endblock %}
+{% block content %}
+    {% include 'flash.twig' %}
+    <table class="ui single line table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Name</th>
+            <th>Url</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for dashboard in dashboards %}
+            <tr>
+                <td>{{ dashboard.id }}</td>
+                <td>{{ dashboard.title }}</td>
+                <td>{{ dashboard.name }}</td>
+                <td>{{ dashboard.url }}</td>
+                <td>
+                    <a href="{{ path_for('settings.dashboards.view', {uuid: dashboard.id}) }}" class="ui right floated small labeled icon button">
+                        <i class="eye icon"></i>
+                        View
+                    </a>
+                    <a href="{{ path_for('settings.dashboards.delete', {uuid: dashboard.id}) }}" class="ui right floated small labeled icon button">
+                        <i class="remove icon"></i>
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot class="full-width">
+        <tr>
+            <th colspan="5">
+                <a class="ui right floated small primary labeled icon button" href="{{ path_for('settings.dashboards.create') }}">
+                    <i class="add icon"></i> Add Dashboard
+                </a>
+            </th>
+        </tr>
+        </tfoot>
+    </table>
+{% endblock %}
